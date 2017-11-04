@@ -1,0 +1,63 @@
+<div>
+<h4>Welcome list</h4>
+
+<table class="table table-responsive">
+	<thead>
+		<tr>
+			<th>firstname </th>
+			<th>lastname </th>
+			<th>email </th>
+			<th>action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="data in listdata">
+			<td>{{data.firstname}}	</td>
+			<td>{{data.lastname}}	</td>
+			<td>{{data.email}}	</td>
+			<td>
+				<span class="glyphicon glyphicon-trash" style="cursor:pointer;" ng-click="delete($index)"></span>&nbsp;
+				<span class="glyphicon glyphicon-pencil" style="cursor:pointer;" ng-click="editmod(data,$index)"></span>
+			</td>		
+		</tr>
+	</tbody>
+
+</table>
+</div>
+
+<div id="openmodel2" class="modal fade" >
+	<div class="modal-dialog">
+		<div class="modal-content">
+		<form name="editmodelForm" id="editmodelForm" novalidate ng-submit="update(data,data.index)">	
+
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title"> Edit User</h4>
+			</div>	
+			<div class="modal-body">
+
+				<label>firstname</label>
+				<input type="hidden" ng-model="data.index">	
+				<input type="text" class="form-control" name="efname" ng-model="data.efirstname" required/>	
+					<div ng-messages="editmodelForm.efname.$error" ng-if="editmodelForm.efname.$dirty && editmodelForm.efname.$invalid" >
+					<p ng-message="required">First name is required </p>
+					</div>
+				<label>lastname</label>
+				<input type="text" class="form-control" name="elname" ng-model="data.elastname" required />
+					<div ng-messages="editmodelForm.elname.$error" ng-if="editmodelForm.elname.$dirty && editmodelForm.elname.$invalid" >
+					<p ng-message="required">Last name is required </p>
+					</div>
+				<label>email</label>
+				<input type="email" class="form-control" name="eemail" ng-model="data.eemail" required/>
+					<div ng-messages="editmodelForm.eemail.$error" ng-if=" editmodelForm.eemail.$invalid && (editmodelForm.eemail.$dirty || submited)"   >
+					<p ng-message="required">Enter valid email Address</p>
+					</div>
+			</div>
+			<div class="modal-footer">
+			<button type="submit" ng-if ="edit" class=" btn btn-success" >update</button>
+			<button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
+			</div>	
+		</form>	
+		</div>	
+	</div>	
+</div>

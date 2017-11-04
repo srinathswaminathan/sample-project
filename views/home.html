@@ -1,0 +1,55 @@
+<div>
+<h4>Welcome home</h4>
+
+<button type="button" class="btn btn-primary" data-target="#openmodel" data-toggle="modal">add new user</button>
+</div>
+
+<div id="openmodel" class="modal fade" >
+
+	<div class="modal-dialog">
+		<div class="modal-content">
+		<form name="openmodelform" id="openmodelform" novalidate ng-submit="saveuser(data)">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title"> Add User</h4>
+			</div>	
+			<div class="modal-body">
+
+				<label>firstname</label>
+				<input type="text" class="form-control" id="fname" name="fname" ng-model="data.firstname" required/>
+					<div ng-messages="openmodelform.fname.$error" class="has-error" ng-if="openmodelform.fname.$dirty && openmodelform.fname.$invalid">	
+							<p ng-message="required">Firstname is required </p>
+					</div>
+
+
+				<label>lastname</label>
+				<input type="text" class="form-control" id="lname" name="lname" ng-model="data.lastname" required/>
+					<div ng-messages="openmodelform.lname.$error" class="has-error" ng-if="openmodelform.lname.$dirty && openmodelform.lname.$invalid">
+						<p ng-message="required">Lastname is required </p>	
+					</div>
+
+				<label>email</label>
+				<input type="email" class="form-control" id="email" name="email" ng-model="data.email" required/>
+					<div ng-messages="openmodelform.email.$error" class="has-error" ng-if="openmodelform.email.$dirty && openmodelform.email.$invalid">
+						<p ng-message="required">Enter valid email Address</p>
+						
+					</div>
+
+			</div>
+			<div class="modal-footer">
+			<button type="submit" ng-if ="!edit" class=" btn btn-success" ng-disabled="openmodelform.$invalid">save</button>
+			<button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
+			</div>	
+		</form>	
+		</div>	
+	</div>	
+
+</div>
+
+<script>
+$("#openmodel").on("hidden.bs.modal", function(){
+    $("#fname").val("");
+    $("#lname").val("");
+    $("#email").val("");
+});
+</script>
