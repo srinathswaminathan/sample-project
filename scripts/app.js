@@ -1,5 +1,4 @@
 angular.module('baseapp',['oc.lazyLoad','ngComponentRouter','ngRoute']);
-
 angular.module('baseapp').component('app',{
 
 	templateUrl:"views/main.html",
